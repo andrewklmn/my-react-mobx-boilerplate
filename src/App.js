@@ -13,7 +13,7 @@ import { AppDataProvider } from './context';
 import Panel from "./components/Panel";
 import Footer from "./components/Footer";
 
-import './App.css';
+import './global.css';
 
 const App = () => {
   useEffect(() => {

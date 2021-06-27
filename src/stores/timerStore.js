@@ -1,6 +1,6 @@
 // Example of store
 
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, autorun, reaction } from "mobx";
 
 const defaultState = 0;
 
@@ -33,6 +33,24 @@ function createTimerStore(defaultState){
 
 
 const timerStore = createTimerStore(defaultState);
+
+
+// autorun on every 
+autorun(() => {
+  console.log('=== AUTORUN ====');
+  console.log(`Seconds passed ${timerStore.secondsPassed}`);
+});
+
+// reaction to change of something in store
+reaction(
+  () => timerStore.secondsPassed,
+  time => {
+    if (time < 10) {
+        console.log("Less than 10!")
+    } else {
+        console.log("10 or more!")
+    }
+  });
 
 setInterval(() => {
   timerStore.increaseTimer()
