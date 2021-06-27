@@ -1,25 +1,61 @@
-import logo from './logo.svg';
+import React, { useEffect } from "react";
+import {Provider} from "mobx-react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
+import stores from "./stores/stores";
+import { AppDataProvider } from './context';
+
+import Panel from "./components/Panel";
+import Footer from "./components/Footer";
+
 import './App.css';
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    console.log('=== APP RENDER DONE ===');
+    console.log(stores);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider {...stores}>
+      <AppDataProvider value={'This message was received from context.'}>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <div>Home</div>
+            </Route>
+            <Route path="/about">
+              <div>About</div>
+            </Route>
+            <Route path="/dashboard">
+              <div>Dashboard</div>
+            </Route>
+            <Redirect to="/" />
+          </Switch>
+          <Panel />
+          <br />
+          <Footer />
+          <br />
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          </ul>
+        </Router>
+      </AppDataProvider>
+    </Provider>
   );
-}
+};
 
 export default App;

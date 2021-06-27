@@ -1,8 +1,7 @@
+// Example of ContextProvider
 import React from 'react'
 
-const StoreContext = React.createContext()
+export const AppDataContext = React.createContext()
 
-export const StoreProvider = StoreContext.Provider
-export const StoreConsumer = StoreContext.Consumer
-
-export default StoreContext
+export const AppDataProvider = AppDataContext.Provider
+export const AppDataConsumer = AppDataContext.Consumer

@@ -1,8 +1,12 @@
+// Example of store
+
 import { makeAutoObservable } from "mobx";
 
-function createTimerStore(startValue){
+const defaultState = 0;
+
+function createTimerStore(defaultState){
   const store = makeAutoObservable({
-    secondsPassed: startValue,
+    secondsPassed: defaultState,
 
     increaseTimer: () => {
       store.secondsPassed += 1
@@ -12,6 +16,7 @@ function createTimerStore(startValue){
       store.secondsPassed = 0;
     },
     
+    // examle of async method
     resetAfter5Seconds: async () => {
       console.log('=== PROMISE STARTED ===')
       return new Promise((resolve, reject) => {
@@ -27,7 +32,7 @@ function createTimerStore(startValue){
 }
 
 
-const timerStore = createTimerStore(0);
+const timerStore = createTimerStore(defaultState);
 
 setInterval(() => {
   timerStore.increaseTimer()

@@ -1,8 +1,7 @@
 import React from "react";
 import { inject, observer } from 'mobx-react'
 
-const Panel = ({timerStore}) => {
-
+const Panel = inject('timerStore')(observer(({timerStore}) => {
   console.log('==== PANEL ====');
 
   return (
@@ -11,8 +10,8 @@ const Panel = ({timerStore}) => {
       <button onClick={() => timerStore.resetAfter5Seconds()}>Reset</button>
     </div>
   );
-};
+}));
 
 // Example of functional component with inject anf observer
-export default inject('timerStore')(observer(Panel))
+export default Panel;
 
