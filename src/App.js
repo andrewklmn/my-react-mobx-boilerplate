@@ -25,6 +25,18 @@ const App = () => {
     <Provider {...stores}>
       <AppDataProvider value={'This message was received from context.'}>
         <Router>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          </ul>
+          <hr />
           <Switch>
             <Route exact path="/">
               <div>Home</div>
@@ -37,21 +49,10 @@ const App = () => {
             </Route>
             <Redirect to="/" />
           </Switch>
+          <hr />
           <Panel />
           <br />
           <Footer />
-          <br />
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-          </ul>
         </Router>
       </AppDataProvider>
     </Provider>

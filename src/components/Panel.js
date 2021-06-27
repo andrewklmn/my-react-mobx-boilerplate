@@ -6,8 +6,10 @@ const Panel = inject('timerStore')(observer(({timerStore}) => {
 
   return (
     <div>
+      <h3>Panel</h3>
       <span>Seconds passed: {timerStore.secondsPassed}</span>
-      <button onClick={() => timerStore.resetAfter5Seconds()}>Reset</button>
+      <br />
+      <button onClick={() => timerStore.resetAfter5Seconds()}>Reset after 5 seconds</button>
     </div>
   );
 }));
