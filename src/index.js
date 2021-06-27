@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
+import {Provider} from "mobx-react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,15 +8,18 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-import Panel from "./components/Panel";
-import { StoreProvider } from "./context";
 import stores from "./stores/stores";
+import Panel from "./components/Panel";
+import Footer from "./components/Footer";
 
 const App = () => {
-  useEffect(() => {});
+  useEffect(() => {
+    console.log('=== APP RENDER DONE ===');
+    console.log(stores);
+  });
 
   return (
-    <StoreProvider value={stores}>
+    <Provider {...stores}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -31,6 +35,8 @@ const App = () => {
         </Switch>
         <Panel />
         <br />
+        <Footer />
+        <br />
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -43,7 +49,7 @@ const App = () => {
           </li>
         </ul>
       </Router>
-    </StoreProvider>
+    </Provider>
   );
 };
 
