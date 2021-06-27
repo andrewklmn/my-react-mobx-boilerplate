@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
+import StoreContext from "../context";
 
-const Panel = observer((props) => {
+const Panel = observer(() => {
+
+  const { timerStore } = useContext(StoreContext);
 
   return (
     <div>
-      <span>Seconds passed: {props.timerStore.secondsPassed}</span>
-      <button onClick={() => props.timerStore.resetAfter5Seconds()}>Reset</button>
+      <span>Seconds passed: {timerStore.secondsPassed}</span>
+      <button onClick={() => timerStore.resetAfter5Seconds()}>Reset</button>
     </div>
   );
 })
